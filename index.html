@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IrisFile — Tax Filing Infrastructure for Software Companies</title>
+<meta name="description" content="IrisFile provides developer-first infrastructure for preparing, validating, submitting, tracking and correcting U.S. information returns.">
+<link rel="canonical" href="https://irisfile.tax/">
+<meta property="og:title" content="IrisFile — Tax Filing Infrastructure for Software Companies">
+<meta property="og:description" content="Turn your tax data into IRS-ready information returns without building and maintaining the filing infrastructure yourself.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://irisfile.tax/"><meta property="og:site_name" content="IrisFile">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#2F6BFF">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"IrisFile","url":"https://irisfile.tax/","email":"hello@irisfile.tax"},{"@type":"SoftwareApplication","name":"IrisFile","applicationCategory":"DeveloperApplication","operatingSystem":"Web","description":"Developer-first API for preparing, validating, submitting, tracking and correcting U.S. information returns such as 1099 forms.","url":"https://irisfile.tax/"}]}</script>
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("irisfile-theme")==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}</script>
+<style>
+:root{--bg:#050a1f;--soft:#070e2b;--text:#E6ECFF;--muted:#8E9CC7;--line:#17234d;--p:#6FA3FF;--ph:#2558D6;--btn:#2F6BFF;--ok:#3DD6A0;--err:#FF6B6B;--warn:#FFB454;--dark:#02061a;--card:#0a1438;--code:#030818;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--p);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+.soft{background:var(--soft)}
+.eyebrow{font-size:13px;font-weight:600;color:var(--p);letter-spacing:.02em;margin:0 0 12px}
+h1,h2,h3{margin:0;letter-spacing:-.03em;line-height:1.08}
+h1{font-size:clamp(40px,7vw,76px);font-weight:700}
+h2{font-size:clamp(30px,4.4vw,48px);font-weight:700;max-width:820px}
+h3{font-size:18px;letter-spacing:-.01em;line-height:1.3}
+p{margin:0}
+.lead{color:var(--muted);font-size:18px;max-width:640px;margin-top:16px}
+.grad{background:linear-gradient(90deg,#635BFF,#8B5CF6 60%,#4F46E5);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* nav */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav{display:flex;align-items:center;height:64px;gap:32px}
+.logo{font-weight:700;font-size:20px;letter-spacing:-.03em}
+.logo b{color:var(--p);font-weight:700}.logo i{font-style:normal;font-weight:500;color:var(--muted)}
+.links{display:flex;gap:4px;flex:1}
+.links a{padding:8px 12px;border-radius:6px;font-size:15px;color:var(--muted);transition:color .15s,background .15s}
+.links a:hover{color:var(--text);background:var(--soft)}
+.navcta{display:flex;gap:8px;align-items:center}
+.menu{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--text);border-radius:6px;min-width:44px;min-height:44px;font-size:20px;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:6px;font:600 15px inherit;font-family:inherit;border:1px solid transparent;cursor:pointer;transition:background .15s,transform .1s,box-shadow .15s}
+.btn:active{transform:translateY(1px)}
+.btn.p{background:var(--btn);color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.5)}.btn.p:hover{background:#4A80FF;box-shadow:0 0 24px rgba(79,140,255,.45)}
+.btn.g{background:var(--card);color:var(--text);border-color:var(--line)}.btn.g:hover{background:var(--soft)}
+/* hero */
+.hero{text-align:left;padding:88px 0 40px;background:radial-gradient(60% 50% at 50% 0,rgba(79,140,255,.08),transparent)}
+.badge{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 14px;font-size:13px;color:var(--muted);margin-bottom:28px}
+.badge:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--p)}
+.hero .lead{margin:24px 0 0;max-width:680px}
+.ctas{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.fine{font-size:13px;color:var(--muted);margin-top:20px}
+/* pipeline */
+.pipe{margin:56px 0 0;max-width:100%!important;max-width:1000px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:28px;box-shadow:0 12px 32px -12px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:space-between;gap:0}
+.node{border:1px solid var(--line);border-radius:8px;padding:12px 14px;font:500 13px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--soft);white-space:nowrap;text-align:center}
+.node.hi{border-color:var(--p);color:var(--p);background:color-mix(in srgb,var(--p) 8%,var(--card))}
+.wire{flex:1;height:2px;background:var(--line);position:relative;min-width:12px;overflow:hidden}
+.wire:after{content:"";position:absolute;top:-1px;left:-20%;width:20%;height:4px;background:var(--p);border-radius:2px;animation:flow 2.6s linear infinite}
+.wire:nth-child(4):after{animation-delay:.4s}.wire:nth-child(6):after{animation-delay:.8s}.wire:nth-child(8):after{animation-delay:1.2s}.wire:nth-child(10):after{animation-delay:1.6s}.wire:nth-child(12):after{animation-delay:2s}
+@keyframes flow{to{left:100%}}
+/* features */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:48px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+.grid3>div{padding:28px;border-right:1px solid var(--line)}.grid3>div:last-child{border:0}
+.ico{width:36px;height:36px;border:1px solid var(--line);border-radius:6px;display:grid;place-items:center;color:var(--p);margin-bottom:20px;font:600 14px ui-monospace,Menlo,monospace;background:var(--soft)}
+.grid3 p,.card p{color:var(--muted);font-size:15px;margin-top:8px}
+/* demo */
+.demo{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.panel{border:1px solid var(--line);border-radius:10px;background:var(--card);box-shadow:0 12px 32px -14px rgba(0,0,0,.5);overflow:hidden}
+.ph{padding:12px 20px;border-bottom:1px solid var(--line);font:500 12px ui-monospace,Menlo,monospace;color:var(--muted);display:flex;justify-content:space-between}
+.pb{padding:24px}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;font:14px ui-monospace,Menlo,monospace;margin-bottom:24px}
+.meta dt{color:var(--muted)}.meta dd{margin:0}
+.bar{height:6px;background:var(--line);border-radius:3px;margin:20px 0 4px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#2F6BFF,#7FB2FF);transition:width .1s linear}
+.res{margin-top:20px;display:none}.res.on{display:block}
+.row{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font:14px ui-monospace,Menlo,monospace}
+.row b{font-weight:600}.v{color:var(--ok)}.e{color:var(--err)}.w{color:var(--warn)}
+.tag{background:color-mix(in srgb,var(--warn) 14%,var(--card));color:var(--warn);padding:2px 8px;border-radius:4px;font-size:12px}
+pre{margin:0;padding:24px;background:var(--code);color:#cbd5e1;font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-x:auto;height:100%}
+.k{color:#8fb8ff}.s{color:#86efac}.n{color:#fcd34d}.m{color:#7dd3fc}.c{color:#64748b}
+.cur{display:inline-block;width:7px;height:14px;background:#8fb8ff;vertical-align:-2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.note{font-size:14px;color:var(--muted);margin-top:16px}
+/* dev */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;align-items:start}
+.eps{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.eps pre{padding:20px;height:auto}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.feat div{border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-size:15px;background:var(--card)}
+.sdk{margin-top:16px;color:var(--muted);font-size:14px}
+.sdk span{border:1px dashed var(--line);border-radius:4px;padding:2px 8px;margin-right:6px;color:var(--text)}
+/* workflow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;position:relative}
+.flow:before{content:"";position:absolute;top:15px;left:15px;right:15px;height:2px;background:linear-gradient(90deg,var(--p) var(--w,0%),var(--line) var(--w,0%));transition:--w 1s}
+.step{position:relative;padding-top:48px;opacity:.45;transform:translateY(6px);transition:opacity .5s,transform .5s}
+.flow.in .step{opacity:1;transform:none}
+.flow.in .step:nth-child(2){transition-delay:.15s}.flow.in .step:nth-child(3){transition-delay:.3s}.flow.in .step:nth-child(4){transition-delay:.45s}
+.dot{position:absolute;top:0;left:0;width:32px;height:32px;border-radius:50%;background:var(--card);border:2px solid var(--p);color:var(--p);display:grid;place-items:center;font:600 12px ui-monospace,Menlo,monospace}
+.step p{color:var(--muted);font-size:15px;margin-top:6px}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:24px}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px}
+.cats div{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:16px;background:var(--card)}
+.cats .ico{margin:0;color:var(--muted)}
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.plan{border:1px solid var(--line);border-radius:10px;padding:28px;background:var(--card);display:flex;flex-direction:column}
+.plan.pilot{border-color:var(--p);box-shadow:0 12px 32px -12px rgba(79,140,255,.25)}
+.price{font-size:40px;font-weight:700;letter-spacing:-.03em;margin:16px 0 4px}.price small{font-size:15px;color:var(--muted);font-weight:400}
+.plan ul{list-style:none;padding:0;margin:20px 0 28px;flex:1;color:var(--muted);font-size:15px}
+.plan li{padding:6px 0}.plan li:before{content:"✓";color:var(--ok);margin-right:10px}
+.pill{font-size:11px;font-weight:600;background:var(--btn);color:#fff;border-radius:4px;padding:2px 8px;margin-left:8px;vertical-align:2px}
+/* cta/footer */
+.final{background:var(--dark);color:#fff;text-align:center}
+.final h2{margin:0 auto}.final .lead{margin:16px auto 0;color:#8E9CC7}
+.final .btn.g,.final .btn.g:visited{background:transparent;color:#fff;border-color:#344054}.final .btn.g:hover{background:#1d2939}
+.final a.mail{display:inline-block;margin-top:24px;color:#8fb8ff;font-size:15px}
+footer{padding:48px 0;border-top:1px solid var(--line)}
+.fr{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.fl{display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--muted)}.fl a:hover{color:var(--text)}
+.disc{font-size:13px;color:var(--muted);margin-top:24px;max-width:600px}
+.rv{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}.rv.in{opacity:1;transform:none}
+@media (max-width:900px){
+ .links,.navcta{display:none}.menu{display:block}
+ .nav.open{flex-wrap:wrap;height:auto;padding:10px 0}
+ .nav.open .links,.nav.open .navcta{display:flex;flex-direction:column;width:100%;align-items:stretch;gap:2px}
+ .nav.open .links a{padding:12px}
+ section{padding:64px 0}
+ .grid3,.demo,.two,.cards,.plans,.cats{grid-template-columns:1fr}
+ .grid3>div{border-right:0;border-bottom:1px solid var(--line)}
+ .pipe{flex-direction:column;padding:20px}.wire{width:2px;height:24px;min-width:0;flex:none}.wire:after{width:4px;height:20%;left:-1px;top:-20%;animation-name:flowv}
+ @keyframes flowv{to{top:100%}}
+ .flow{grid-template-columns:1fr;gap:0}.flow:before{left:15px;right:auto;top:0;bottom:0;width:2px;height:auto}
+ .step{padding:0 0 32px 52px}.dot{top:0}
+ .feat{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv,.step{opacity:1;transform:none}}
+
+.eyebrow{text-transform:none}
+.chain{list-style:none;margin:40px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 0;align-items:center}
+.chain li{border:1px solid var(--line);background:var(--card);border-radius:6px;padding:8px 12px;font:500 13px ui-monospace,Menlo,monospace}
+.chain li:not(:last-child):after{content:"";}
+.chain li+li{margin-left:28px;position:relative}.chain li+li:before{content:"";position:absolute;left:-28px;top:50%;width:28px;height:1px;background:var(--line)}
+.chain li.hi{border-color:var(--p);color:var(--p);background:color-mix(in srgb,var(--p) 8%,var(--card))}
+.tl{font-size:14px;color:var(--muted);margin-top:20px}
+.cols{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+.cols>div{padding:24px;border-right:1px solid var(--line)}.cols>div:last-child{border:0}
+.cols .ico{width:auto;padding:0 10px;display:inline-grid;height:28px;margin-bottom:16px}
+.cols p{color:var(--muted);font-size:15px;margin-top:8px}.cols small{display:block;margin-top:14px;font:12px ui-monospace,Menlo,monospace;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;max-width:900px}
+.chips span{border:1px solid var(--line);background:var(--card);border-radius:6px;padding:8px 12px;font-size:14px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.cmp ul{list-style:none;margin:16px 0 0;padding:0;font-size:15px}.cmp li{padding:8px 0;border-top:1px solid var(--line);color:var(--muted)}
+.cmp .us{border-color:var(--p)}.cmp .us li{color:var(--text)}.cmp .us li:before{content:"+ ";color:var(--p);font-family:ui-monospace,Menlo,monospace}
+.cmp .them li:before{content:"– ";font-family:ui-monospace,Menlo,monospace}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);padding:0 12px;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);font:500 13px ui-monospace,Menlo,monospace;min-height:44px;padding:0 12px;cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected=true]{color:var(--p);border-color:var(--p)}
+.steps5{list-style:none;padding:0;margin:32px 0 0;counter-reset:s}.steps5 li{counter-increment:s;padding:12px 0 12px 44px;position:relative;border-top:1px solid var(--line)}
+.steps5 li:before{content:counter(s);position:absolute;left:0;top:10px;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--p);color:var(--p);display:grid;place-items:center;font:600 12px ui-monospace,Menlo,monospace}
+.ev{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:32px}.ev code{border:1px solid var(--line);background:var(--card);border-radius:6px;padding:10px 12px;font:13px ui-monospace,Menlo,monospace}
+.ev code.hi{border-color:var(--p);color:var(--p)}
+.blk{margin-top:16px}.blk .row b{color:var(--err)}
+.stat{display:flex;gap:24px;flex-wrap:wrap;margin:20px 0 4px;font:14px ui-monospace,Menlo,monospace}.stat b{display:block;font-size:26px;letter-spacing:-.02em;font-family:inherit}
+.dark{background:var(--dark);color:#fff}.dark .lead,.dark .chain li{color:#98A2B3}.dark .chain li{background:#0b1020;border-color:#1f2937}.dark .chain li.hi{color:#a5b4fc;border-color:#2F6BFF}.dark .eyebrow{color:#a5b4fc}
+.sm{font-size:14px;color:var(--muted);margin-top:12px}
+.fl a{min-height:24px}
+@media (max-width:900px){.cols,.cmp,.ev{grid-template-columns:1fr}.cols>div{border-right:0;border-bottom:1px solid var(--line)}.chain{flex-direction:column;align-items:flex-start;gap:0}.chain li+li{margin:20px 0 0 20px}.chain li+li:before{left:20px;top:-20px;width:1px;height:20px}.hero .ctas .btn{width:100%}.ctas{flex-direction:column}.final .ctas{align-items:stretch}.ev{grid-template-columns:1fr 1fr}.pipe .node{width:100%}}
+
+.hero{background:radial-gradient(70% 60% at 78% 0,rgba(47,107,255,.28),transparent 70%),radial-gradient(50% 50% at 8% 30%,rgba(110,70,255,.14),transparent 70%),radial-gradient(1px 1px at 12% 18%,#fff,transparent),radial-gradient(1.5px 1.5px at 28% 62%,#cfe0ff,transparent),radial-gradient(1px 1px at 41% 12%,#fff,transparent),radial-gradient(1px 1px at 57% 44%,#9cc0ff,transparent),radial-gradient(1.5px 1.5px at 73% 20%,#fff,transparent),radial-gradient(1px 1px at 88% 58%,#cfe0ff,transparent),radial-gradient(1px 1px at 93% 14%,#fff,transparent),radial-gradient(1px 1px at 6% 80%,#9cc0ff,transparent),radial-gradient(1px 1px at 66% 86%,#fff,transparent),var(--bg)}
+.final{background:radial-gradient(60% 90% at 50% 120%,rgba(47,107,255,.35),transparent 70%),radial-gradient(1px 1px at 12% 18%,#fff,transparent),radial-gradient(1.5px 1.5px at 28% 62%,#cfe0ff,transparent),radial-gradient(1px 1px at 41% 12%,#fff,transparent),radial-gradient(1px 1px at 57% 44%,#9cc0ff,transparent),radial-gradient(1.5px 1.5px at 73% 20%,#fff,transparent),radial-gradient(1px 1px at 88% 58%,#cfe0ff,transparent),radial-gradient(1px 1px at 93% 14%,#fff,transparent),radial-gradient(1px 1px at 6% 80%,#9cc0ff,transparent),radial-gradient(1px 1px at 66% 86%,#fff,transparent),var(--dark)}
+.pipe,.panel,.plan.pilot{box-shadow:0 0 0 1px rgba(111,163,255,.08),0 24px 60px -24px rgba(47,107,255,.35)}
+.node.hi{box-shadow:0 0 22px rgba(79,140,255,.45)}
+.wire:after{background:#7FB2FF;box-shadow:0 0 8px #4F8CFF}
+.chain li.hi,.cmp .us{box-shadow:0 0 22px rgba(79,140,255,.22)}
+h1{background:linear-gradient(180deg,#fff 30%,#9db8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+header{background:rgba(5,10,31,.8)}
+
+/* ---- light theme ---- */
+:root[data-theme="light"]{--bg:#fbfbfd;--soft:#f5f5f7;--text:#1d1d1f;--muted:#6e6e73;--line:#e5e5ea;--card:#fff;--p:#0b57d0;--ph:#0058b0;--btn:#0071e3;--ok:#1a7f4b;--err:#c92a2a;--warn:#a15c07;--dark:#0b1230;--code:#0b1230;color-scheme:light}
+:root[data-theme="light"] header{background:rgba(251,251,253,.8)}
+:root[data-theme="light"] .hero{background:radial-gradient(60% 50% at 50% 0,rgba(0,113,227,.08),transparent 70%),var(--bg)}
+:root[data-theme="light"] h1{background:linear-gradient(180deg,#1d1d1f 45%,#515158);-webkit-background-clip:text;background-clip:text;color:transparent}
+:root[data-theme="light"] .pipe,:root[data-theme="light"] .panel,:root[data-theme="light"] .plan.pilot{box-shadow:0 1px 2px rgba(0,0,0,.04),0 24px 48px -28px rgba(0,0,0,.18)}
+:root[data-theme="light"] .node.hi,:root[data-theme="light"] .chain li.hi,:root[data-theme="light"] .cmp .us{box-shadow:none}
+:root[data-theme="light"] .wire:after{background:var(--btn);box-shadow:none}
+:root[data-theme="light"] .btn.p:hover{background:#0077ed;box-shadow:none}
+/* ---- elegance pass ---- */
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter","Segoe UI",Roboto,sans-serif;transition:background .3s,color .3s;line-height:1.47}
+section{padding:120px 0}
+h1{font-size:clamp(44px,7.2vw,88px);font-weight:600;letter-spacing:-.045em;line-height:1.04;max-width:980px;margin:0 auto}
+h2{font-size:clamp(32px,4.6vw,56px);font-weight:600;letter-spacing:-.04em;line-height:1.07}
+h3{font-weight:600}
+.lead{font-size:clamp(18px,2vw,21px);line-height:1.5}
+.nav{height:56px}
+.btn{border-radius:980px;font-weight:500;padding:0 24px}
+.panel,.card,.plan,.cols,.cmp>div,.grid3,.pipe{border-radius:20px}
+.cats div{border-radius:16px}.node,.ev code{border-radius:10px}.chain li,.chips span{border-radius:980px}
+.pipe,.panel{box-shadow:0 1px 0 rgba(111,163,255,.08),0 24px 50px -30px rgba(0,0,0,.6)}
+.plan.pilot{box-shadow:0 0 0 1px var(--btn),0 24px 50px -28px rgba(47,107,255,.5)}
+.node.hi{box-shadow:0 0 14px rgba(79,140,255,.35)}
+.hero{text-align:center;padding:112px 0 72px}
+.hero .lead{margin:24px auto 0}.hero .ctas{justify-content:center}
+.pipe{margin:64px auto 0;max-width:1040px!important}
+section .wrap>h2,section .wrap>.eyebrow,section .wrap>.lead,#iris .wrap>h3,#developers .wrap>h3{text-align:center;margin-left:auto;margin-right:auto}
+#developers .wrap>.sm,.wrap>.note,.tl{text-align:center}
+.chips,.chain{justify-content:center;margin-left:auto;margin-right:auto}
+#iris .ctas{justify-content:center!important}
+.eyebrow{font-size:15px;font-weight:600}
+.tgl{min-width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:17px;cursor:pointer;margin-left:8px;transition:background .15s}
+.tgl:hover{background:var(--soft)}
+@media (max-width:900px){
+ section{padding:72px 0}.hero{padding:72px 0 48px}
+ .logo{order:0}.tgl{order:1;margin-left:auto}.menu{order:2;margin-left:8px}.links,.navcta{order:3}
+ .chain{align-items:center}.chain li+li{margin:20px 0 0}.chain li+li:before{left:50%;top:-20px}
+ .nav.open{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav class="nav" id="nav" aria-label="Primary">
+<a class="logo" href="#top" aria-label="IrisFile.tax home">iris<b>File</b><i>.tax</i></a>
+<div class="links"><a href="#product">Product</a><a href="#iris">IRIS migration</a><a href="#developers">Developers</a><a href="#security">Security</a><a href="#pricing">Pricing</a></div>
+<div class="navcta"><a class="btn g" href="https://docs.irisfile.tax">API docs</a><a class="btn p" href="https://sandbox.irisfile.tax">Build with IrisFile</a></div>
+<button class="tgl" id="theme" aria-label="Switch to light mode" aria-pressed="false"><span aria-hidden="true">☀</span></button>
+<button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button>
+</nav></div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+<p class="eyebrow">Tax filing infrastructure</p>
+<h1>Your tax software shouldn’t have to become tax infrastructure.</h1>
+<p class="lead">IrisFile helps software companies validate, prepare, submit, track, and correct U.S. information returns through a developer-first API.</p>
+<div class="ctas"><a class="btn p" href="https://sandbox.irisfile.tax">Build with IrisFile</a><a class="btn g" href="https://docs.irisfile.tax">View API Docs</a></div>
+<p class="fine">Built for SaaS platforms, marketplaces, payroll systems, accounting software, and high-volume filers.</p>
+<div class="pipe" role="img" aria-label="Your software calls the IrisFile API, which validates, prepares, submits and tracks filings through to the IRS">
+<div class="node">Your software</div><div class="wire"></div><div class="node hi">IrisFile API</div><div class="wire"></div><div class="node">Validate</div><div class="wire"></div><div class="node">Prepare</div><div class="wire"></div><div class="node">Submit</div><div class="wire"></div><div class="node">Track</div><div class="wire"></div><div class="node">IRS</div>
+</div></div></section>
+
+<section><div class="wrap">
+<h2>Don’t build the IRS integration yourself.</h2>
+<p class="lead">Your platform already owns the customer, vendor, payment, and tax data. The painful part is everything between that data and a successful filing.</p>
+<ol class="chain"><li class="hi">Your data</li><li>Tax mapping</li><li>Validation</li><li>IRS schemas</li><li>Submission</li><li>Acknowledgements</li><li>Corrections</li><li>Audit trail</li></ol>
+<p class="tl"><b style="color:var(--text)">IrisFile handles the infrastructure layer.</b></p>
+</div></section>
+
+<section class="soft"><div class="wrap">
+<h2>Filing isn’t just an API call.</h2>
+<p class="lead">High-volume filing is a lifecycle. Every stage below is something your team would otherwise build, run, and keep current.</p>
+<div class="chips"><span>Data normalization</span><span>Form mapping</span><span>Schema validation</span><span>Business-rule validation</span><span>Submission orchestration</span><span>Idempotency</span><span>Retry handling</span><span>IRS acknowledgements</span><span>Rejection handling</span><span>Corrections</span><span>Audit history</span><span>Filing status</span><span>Operational visibility</span></div>
+</div></section>
+
+<section id="product"><div class="wrap">
+<p class="eyebrow">Product</p>
+<h2>Everything between your tax data and the IRS.</h2>
+<div class="cols">
+<div><span class="ico">01 Ingest</span><h3>Bring your existing tax data.</h3><p>Send records without reshaping your data model first.</p><small>JSON · CSV · database exports · internal systems</small></div>
+<div><span class="ico">02 Validate</span><h3>Know what’s going to fail before you submit.</h3><p>Schema and business-rule checks with field-level errors.</p><small>warnings and blockers</small></div>
+<div><span class="ico">03 Submit</span><h3>Reliable filing infrastructure.</h3><p>IRIS-ready preparation and submission orchestration.</p><small>retries · idempotency · acknowledgement tracking</small></div>
+<div><span class="ico">04 Resolve</span><h3>Turn rejection into an actionable workflow.</h3><p>Explain the error, find affected records, correct, revalidate, resubmit.</p><small>correction workflow</small></div>
+</div></div></section>
+
+<section class="soft" id="demo"><div class="wrap">
+<p class="eyebrow">Filing readiness</p>
+<h2>Fix issues before they become filing failures.</h2>
+<p class="lead">Interactive prototype using synthetic data. No live IRS transmission occurs from this demo.</p>
+<div class="demo">
+<div class="panel"><div class="ph"><span>filing readiness</span><span>synthetic data</span></div><div class="pb">
+<dl class="meta"><dt>file</dt><dd>2026_1099_batch.csv</dd><dt>records</dt><dd>102,481</dd><dt>tax year</dt><dd>2026</dd><dt>form</dt><dd>1099-NEC</dd></dl>
+<button class="btn p" id="run" style="width:100%">Run pre-flight validation</button>
+<div class="bar" aria-hidden="true"><span id="prog"></span></div>
+<div class="res" id="res" aria-live="polite">
+<div class="row"><span>Records</span><b id="n1">0</b></div>
+<div class="row"><span>Ready</span><b class="v" id="n2">0</b></div>
+<div class="row"><span>Warnings</span><b class="w" id="n4">0</b></div>
+<div class="row"><span>Blockers</span><b class="e" id="n3">0</b></div>
+<div class="row"><span>Status</span><b class="tag">BLOCKED UNTIL FIXED</b></div>
+</div></div></div>
+<div class="panel"><div class="ph"><span>blockers</span><span>139 total</span></div><div class="pb">
+<div class="row"><span>Invalid recipient TIN</span><b class="e">73</b></div>
+<div class="row"><span>Missing recipient information</span><b class="e">41</b></div>
+<div class="row"><span>Invalid state combination</span><b class="e">25</b></div>
+<p class="note">Each blocker links to the affected records, so corrections can be revalidated and resubmitted.</p></div></div>
+</div></div></section>
+
+<section><div class="wrap">
+<p class="eyebrow">Developer-first by design</p>
+<h2>Bring your data. IrisFile handles the filing infrastructure.</h2>
+<p class="lead">Your engineers shouldn’t have to become experts in IRS transmission formats, filing workflows, and correction mechanics.</p>
+<div class="demo">
+<div class="panel"><div class="ph"><span>request</span><span>POST /v1/filings</span></div>
+<pre><code><span class="m">POST</span> /v1/filings
+
+{
+  <span class="k">"form"</span>: <span class="s">"1099-NEC"</span>,
+  <span class="k">"tax_year"</span>: <span class="n">2026</span>,
+  <span class="k">"payer"</span>: { <span class="c">...</span> },
+  <span class="k">"recipients"</span>: [ <span class="c">...</span> ]
+}</code></pre></div>
+<div class="panel"><div class="ph"><span>response</span><span>201 Created</span></div>
+<pre><code>{
+  <span class="k">"id"</span>: <span class="s">"fil_8f31a"</span>,
+  <span class="k">"status"</span>: <span class="s">"ready"</span>
+}<span class="cur"></span></code></pre></div>
+</div></div></section>
+
+<section class="soft"><div class="wrap">
+<h2>Not another tax filing dashboard.</h2>
+<div class="cmp">
+<div class="card them"><h3>Traditional tax filing software</h3><ul><li>User-facing tax workflows</li><li>Manual filing experience</li><li>Form-centric</li><li>Built for individual businesses</li></ul></div>
+<div class="card us"><h3>IrisFile</h3><ul><li>API-first</li><li>Embedded into existing software</li><li>Data-centric</li><li>Built for software companies</li><li>High-volume workflows</li><li>Filing lifecycle control</li><li>Developer-first</li></ul></div>
+</div></div></section>
+
+<section id="iris"><div class="wrap">
+<p class="eyebrow">FIRE to IRIS</p>
+<h2>FIRE is changing. Your infrastructure has to change with it.</h2>
+<p class="lead">The IRS is transitioning information-return filing from the legacy FIRE system to IRIS. For software companies that have built or depend on filing infrastructure, this creates a significant migration and integration requirement.</p>
+<div class="ctas" style="justify-content:flex-start"><a class="btn p" href="https://docs.irisfile.tax">Prepare your filing stack for IRIS</a></div>
+<h3 style="margin-top:64px;font-size:28px;letter-spacing:-.02em">Move from legacy filing workflows without rebuilding everything.</h3>
+<p class="lead" style="margin-top:12px">Keep your existing data model. Let IrisFile handle the translation, validation, and filing workflow.</p>
+<ol class="chain"><li>Legacy data: CSV / FIRE / internal system</li><li class="hi">IrisFile</li><li>Normalize</li><li>Validate</li><li>IRIS-ready</li><li>Submit</li></ol>
+</div></section>
+
+<section class="soft" id="developers"><div class="wrap">
+<p class="eyebrow">Developer experience</p>
+<h2>Five minutes to your first filing workflow.</h2>
+<div class="two">
+<div><ol class="steps5"><li>Create API key</li><li>Send sample filing</li><li>Validate</li><li>Review</li><li>Submit</li></ol>
+<div class="ctas" style="justify-content:flex-start"><a class="btn p" href="https://docs.irisfile.tax">Read the API documentation</a><a class="btn g" href="https://sandbox.irisfile.tax">Explore the sandbox</a></div></div>
+<div class="panel"><div class="tabs" role="tablist" aria-label="Code examples"><button role="tab" aria-selected="true" aria-controls="t0" id="b0">cURL</button><button role="tab" aria-selected="false" aria-controls="t1" id="b1" tabindex="-1">Node.js</button><button role="tab" aria-selected="false" aria-controls="t2" id="b2" tabindex="-1">Python</button><button role="tab" aria-selected="false" aria-controls="t3" id="b3" tabindex="-1">.NET</button></div>
+<div id="t0" role="tabpanel" aria-labelledby="b0"><pre tabindex="0"><code>curl https://api.irisfile.tax/v1/filings \
+  -H "Authorization: Bearer $IRISFILE_KEY" \
+  -H "Idempotency-Key: 2026-nec-0001" \
+  -d @filing.json</code></pre></div>
+<div id="t1" role="tabpanel" aria-labelledby="b1" hidden><pre tabindex="0"><code>const res = await fetch("https://api.irisfile.tax/v1/filings", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${process.env.IRISFILE_KEY}`,
+    "Idempotency-Key": "2026-nec-0001",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(filing),
+});
+const { id, status } = await res.json();</code></pre></div>
+<div id="t2" role="tabpanel" aria-labelledby="b2" hidden><pre tabindex="0"><code>import os, requests
+
+r = requests.post(
+    "https://api.irisfile.tax/v1/filings",
+    headers={
+        "Authorization": f"Bearer {os.environ['IRISFILE_KEY']}",
+        "Idempotency-Key": "2026-nec-0001",
+    },
+    json=filing,
+)
+print(r.json()["status"])</code></pre></div>
+<div id="t3" role="tabpanel" aria-labelledby="b3" hidden><pre tabindex="0"><code>using var http = new HttpClient();
+http.DefaultRequestHeaders.Add("Authorization",
+    $"Bearer {Environment.GetEnvironmentVariable("IRISFILE_KEY")}");
+http.DefaultRequestHeaders.Add("Idempotency-Key", "2026-nec-0001");
+
+var res = await http.PostAsJsonAsync(
+    "https://api.irisfile.tax/v1/filings", filing);</code></pre></div>
+</div></div>
+<p class="sm">Examples use plain HTTP. Official SDKs are planned.</p>
+
+<h3 style="margin-top:72px;font-size:28px;letter-spacing:-.02em">Your system stays in control.</h3>
+<p class="lead" style="margin-top:12px">Webhooks report every state change, so your product never has to poll.</p>
+<div class="ev"><code>filing.created</code><code>filing.validated</code><code>filing.ready</code><code class="hi">filing.submitted</code><code>filing.accepted</code><code>filing.rejected</code><code>correction.required</code><code>filing.corrected</code></div>
+</div></section>
+
+<section><div class="wrap">
+<p class="eyebrow">Reliability</p>
+<h2>Built for filing deadlines.</h2>
+<div class="cards">
+<div class="card"><h3>Idempotent submissions</h3><p>Safe to retry without duplicate filings.</p></div>
+<div class="card"><h3>Durable queues</h3><p>Submissions survive restarts and spikes.</p></div>
+<div class="card"><h3>Retry handling</h3><p>Transient failures are retried, not dropped.</p></div>
+<div class="card"><h3>Submission state tracking</h3><p>Every filing has an explicit, queryable state.</p></div>
+<div class="card"><h3>Acknowledgement storage</h3><p>IRS responses are kept with the filing.</p></div>
+<div class="card"><h3>Correction workflows</h3><p>Corrections follow the original filing.</p></div>
+<div class="card"><h3>Audit trails</h3><p>Filing and administrative actions are recorded.</p></div>
+<div class="card"><h3>Operational alerts</h3><p>Know about stuck or rejected filings early.</p></div>
+</div></div></section>
+
+<section class="soft" id="security"><div class="wrap">
+<p class="eyebrow">Security</p>
+<h2>Security designed for sensitive tax data.</h2>
+<div class="cards">
+<div class="card"><h3>Encryption</h3><p>In transit and at rest.</p></div>
+<div class="card"><h3>Role-based access</h3><p>Least-privilege access to data and systems.</p></div>
+<div class="card"><h3>Audit logging</h3><p>Track filing and administrative actions.</p></div>
+<div class="card"><h3>Production/test separation</h3><p>Separate sandbox and production environments.</p></div>
+<div class="card"><h3>Key management</h3><p>Credentials are not embedded in application code.</p></div>
+<div class="card"><h3>Data retention controls</h3><p>Control how long filing data is kept.</p></div>
+</div>
+<p class="note">Compliance requirements vary by data source, customer role, and filing workflow. IrisFile does not provide legal or tax advice.</p>
+</div></section>
+
+<section><div class="wrap">
+<h2>Built for software that generates tax data.</h2>
+<div class="cats">
+<div><span class="ico">$</span><span><b>Payroll platforms</b><br><span class="sm">Add information-return filing without building IRS infrastructure.</span></span></div>
+<div><span class="ico">⇄</span><span><b>Marketplaces</b><br><span class="sm">Handle high-volume recipient reporting.</span></span></div>
+<div><span class="ico">≡</span><span><b>Accounting platforms</b><br><span class="sm">Embed filing directly into your workflow.</span></span></div>
+<div><span class="ico">◇</span><span><b>Contractor platforms</b><br><span class="sm">Turn payment data into filing-ready returns.</span></span></div>
+<div><span class="ico">⌂</span><span><b>Property management</b><br><span class="sm">Automate recurring information-return workflows.</span></span></div>
+<div><span class="ico">¤</span><span><b>ERP / Finance SaaS</b><br><span class="sm">Keep tax filing inside your existing product.</span></span></div>
+</div></div></section>
+
+<section class="soft" id="pricing"><div class="wrap">
+<p class="eyebrow">Pricing</p>
+<h2>API pricing that scales with filing volume.</h2>
+<div class="plans">
+<div class="plan"><h3>Developer</h3><div class="price">$199<small>/month</small></div><p class="sm" style="margin:0">For development and early integrations.</p><ul><li>Sandbox</li><li>API access</li><li>Validation</li><li>Documentation</li></ul><a class="btn g" href="https://sandbox.irisfile.tax">Start building</a></div>
+<div class="plan pilot"><h3>Business</h3><div class="price">$999<small>/month</small></div><p class="sm" style="margin:0">For production SaaS platforms.</p><ul><li>Production API</li><li>Webhooks</li><li>Corrections</li><li>Audit trail</li></ul><a class="btn p" href="https://sandbox.irisfile.tax">Start building</a></div>
+<div class="plan"><h3>Enterprise</h3><div class="price">Custom</div><p class="sm" style="margin:0">For high-volume filing infrastructure.</p><ul><li>High-volume filing</li><li>Enterprise controls</li><li>Dedicated support</li></ul><a class="btn g" href="mailto:hello@irisfile.tax?subject=Enterprise">Talk to us</a></div>
+</div>
+<p class="note">Usage-based filing volume is a secondary pricing dimension. Prices are illustrative and not final.</p>
+</div></section>
+
+<section><div class="wrap">
+<h2>Built for the infrastructure problem behind information returns.</h2>
+<div class="chips"><span>API-first</span><span>IRIS-ready architecture</span><span>Validation engine</span><span>Event-driven workflow</span><span>Auditability</span></div>
+</div></section>
+
+<section class="final"><div class="wrap">
+<h2>Build your product. Let IrisFile handle the filing infrastructure.</h2>
+<p class="lead">Connect your existing tax data to a developer-first filing workflow.</p>
+<div class="ctas" style="justify-content:center"><a class="btn p" href="https://sandbox.irisfile.tax">Start building</a><a class="btn g" href="https://docs.irisfile.tax">Read the docs</a></div>
+<a class="mail" href="mailto:hello@irisfile.tax">hello@irisfile.tax</a>
+</div></section>
+</main>
+
+<footer><div class="wrap"><div class="fr">
+<div><a class="logo" href="#top">iris<b>File</b><i>.tax</i></a><p class="sm">Tax filing infrastructure for modern software.</p></div>
+<nav class="fl" aria-label="Footer"><a href="#product">Product</a><a href="https://docs.irisfile.tax">API</a><a href="https://docs.irisfile.tax">Docs</a><a href="#pricing">Pricing</a><a href="#security">Security</a><a href="https://status.irisfile.tax">Status</a><a href="mailto:hello@irisfile.tax">Contact</a><a href="https://irisfile.tax/privacy">Privacy</a><a href="https://irisfile.tax/terms">Terms</a><a href="https://irisfile.tax/dpa">DPA</a></nav>
+</div>
+<p class="disc">IrisFile is an independent software platform and is not affiliated with or endorsed by the IRS.</p>
+<p class="disc" style="margin-top:8px">© 2026 IrisFile · IrisFile.tax</p></div></footer>
+
+<script>
+(function(){
+var nav=document.getElementById('nav'),mb=document.getElementById('menu');
+mb.addEventListener('click',function(){var o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');mb.setAttribute('aria-expanded',false)}});
+var thm=document.getElementById('theme'),root=document.documentElement,mt=document.querySelector('meta[name=theme-color]');
+function setTheme(t,save){root.setAttribute('data-theme',t);var l=t==='light';thm.setAttribute('aria-pressed',l);thm.setAttribute('aria-label',l?'Switch to dark mode':'Switch to light mode');thm.firstChild.textContent=l?'☾':'☀';if(mt)mt.content=l?'#fbfbfd':'#050a1f';if(save){try{localStorage.setItem('irisfile-theme',t)}catch(e){}}}
+setTheme(root.getAttribute('data-theme')==='light'?'light':'dark',false);
+thm.addEventListener('click',function(){setTheme(root.getAttribute('data-theme')==='light'?'dark':'light',true)});
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+function sel(i){tabs.forEach(function(t,j){var on=i===j;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;document.getElementById('t'+j).hidden=!on});tabs[i].focus()}
+tabs.forEach(function(t,i){t.addEventListener('click',function(){sel(i)});t.addEventListener('keydown',function(e){if(e.key==='ArrowRight')sel((i+1)%4);if(e.key==='ArrowLeft')sel((i+3)%4)})});
+var btn=document.getElementById('run'),prog=document.getElementById('prog'),res=document.getElementById('res');
+var tg=[['n1',102481],['n2',101921],['n3',139],['n4',421]];
+function fmt(n){return n.toLocaleString('en-US')}
+function count(){var t0=performance.now(),d=rm?1:900;(function f(t){var p=Math.min(1,(t-t0)/d);tg.forEach(function(x){document.getElementById(x[0]).textContent=fmt(Math.round(x[1]*p))});if(p<1)requestAnimationFrame(f)})(t0)}
+btn.addEventListener('click',function(){
+ if(btn.dataset.s)return;btn.dataset.s='1';btn.disabled=true;btn.textContent='Validating…';
+ var p=0,iv=setInterval(function(){p+=rm?100:Math.random()*9+3;if(p>=100){p=100;clearInterval(iv);
+  prog.style.width='100%';btn.textContent='Validation complete ✓';btn.disabled=false;btn.className='btn g';btn.style.width='100%';res.classList.add('on');count()}
+  prog.style.width=p+'%'},90)});
+})();
+</script>
+</body>
+</html>
