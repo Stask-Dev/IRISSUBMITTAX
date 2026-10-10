@@ -4,3 +4,4 @@ wrangler.toml
 .gitignore
 node_modules
 .wrangler
+src

@@ -218,13 +218,26 @@ section .wrap>h2,section .wrap>.eyebrow,section .wrap>.lead,#iris .wrap>h3,#deve
  .chain{align-items:center}.chain li+li{margin:20px 0 0}.chain li+li:before{left:50%;top:-20px}
  .nav.open{flex-wrap:wrap}
 }
-</style>
+.demo{background:color-mix(in srgb,var(--btn) 14%,var(--bg));border-bottom:1px solid var(--line);text-align:center;font-size:14px;padding:9px 16px;color:var(--text)}
+.demo b{color:var(--p)}.demo a{color:var(--p);text-decoration:underline;text-underline-offset:2px;margin-left:4px}
+.regform{max-width:760px;margin:40px auto 0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;display:grid;gap:18px;text-align:left}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.regform label{display:grid;gap:6px;font-size:14px;font-weight:500;color:var(--text)}
+.regform input,.regform select,.regform textarea{font:inherit;font-size:16px;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-height:44px;width:100%}
+.regform textarea{resize:vertical;min-height:110px}
+.regform input:focus-visible,.regform select:focus-visible,.regform textarea:focus-visible{outline:2px solid var(--p);outline-offset:1px}
+.regform .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.regform button{justify-self:start;border:0;cursor:pointer;font:inherit;font-weight:500}
+.regform button[disabled]{opacity:.6;cursor:progress}
+.regform .st{margin:0;font-size:15px;min-height:22px}.st.ok{color:var(--ok)}.st.er{color:var(--err)}
+@media (max-width:700px){.row2{grid-template-columns:1fr}.regform{padding:22px}}</style>
 </head>
 <body>
+<div class="demo" role="status"><b>Demo preview.</b> IrisTaxFiling runs in test mode against an IRS simulator. Registrations are welcome.<a href="#register">Register for early access</a></div>
 <header><div class="wrap"><nav class="nav" id="nav" aria-label="Primary">
 <a class="logo" href="#top" aria-label="IrisTaxFiling.com home">Iris<b>TaxFiling</b><i>.com</i></a>
 <div class="links"><a href="#product">Product</a><a href="#iris">IRIS migration</a><a href="#developers">Developers</a><a href="#security">Security</a><a href="#pricing">Pricing</a></div>
-<div class="navcta"><a class="btn p" href="https://docs.iristaxfiling.com">API docs</a></div>
+<div class="navcta"><a class="btn g" href="#register">Register</a><a class="btn p" href="https://docs.iristaxfiling.com">API docs</a></div>
 <button class="tgl" id="theme" aria-label="Switch to light mode" aria-pressed="false"><span aria-hidden="true">☀</span></button>
 <button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button>
 </nav></div></header>
@@ -234,7 +247,7 @@ section .wrap>h2,section .wrap>.eyebrow,section .wrap>.lead,#iris .wrap>h3,#deve
 <p class="eyebrow">Tax filing infrastructure</p>
 <h1>Your tax software shouldn’t have to become tax infrastructure.</h1>
 <p class="lead">IrisTaxFiling helps software companies validate, prepare, submit, track, and correct U.S. information returns through a developer-first API.</p>
-<div class="ctas"><a class="btn p" href="https://docs.iristaxfiling.com">Read the API docs</a><a class="btn g" href="#product">See how it works</a></div>
+<div class="ctas"><a class="btn p" href="#register">Register for early access</a><a class="btn g" href="https://docs.iristaxfiling.com">Read the API docs</a></div>
 <p class="fine">Built for SaaS platforms, marketplaces, payroll systems, accounting software, and high-volume filers.</p>
 <div class="pipe" role="img" aria-label="Your software calls the IrisTaxFiling API, which validates, prepares, submits and tracks filings through to the IRS">
 <div class="node">Your software</div><div class="wire"></div><div class="node hi">IrisTaxFiling API</div><div class="wire"></div><div class="node">Validate</div><div class="wire"></div><div class="node">Prepare</div><div class="wire"></div><div class="node">Submit</div><div class="wire"></div><div class="node">Track</div><div class="wire"></div><div class="node">IRS</div>
@@ -415,8 +428,8 @@ var res = await http.PostAsJsonAsync(
 <h2>API pricing that scales with filing volume.</h2>
 <div class="plans">
 <div class="plan"><h3>Developer</h3><div class="price">$199<small>/month</small></div><p class="sm" style="margin:0">For development and early integrations.</p><ul><li>Sandbox</li><li>API access</li><li>Validation</li><li>Documentation</li></ul><a class="btn g" href="https://docs.iristaxfiling.com">Start building</a></div>
-<div class="plan pilot"><h3>Business</h3><div class="price">$999<small>/month</small></div><p class="sm" style="margin:0">For production SaaS platforms.</p><ul><li>Production API</li><li>Webhooks</li><li>Corrections</li><li>Audit trail</li></ul><a class="btn p" href="mailto:hello@iristaxfiling.com?subject=Business">Talk to us</a></div>
-<div class="plan"><h3>Enterprise</h3><div class="price">Custom</div><p class="sm" style="margin:0">For high-volume filing infrastructure.</p><ul><li>High-volume filing</li><li>Enterprise controls</li><li>Dedicated support</li></ul><a class="btn g" href="mailto:hello@iristaxfiling.com?subject=Enterprise">Talk to us</a></div>
+<div class="plan pilot"><h3>Business</h3><div class="price">$999<small>/month</small></div><p class="sm" style="margin:0">For production SaaS platforms.</p><ul><li>Production API</li><li>Webhooks</li><li>Corrections</li><li>Audit trail</li></ul><a class="btn p" href="#register">Talk to us</a></div>
+<div class="plan"><h3>Enterprise</h3><div class="price">Custom</div><p class="sm" style="margin:0">For high-volume filing infrastructure.</p><ul><li>High-volume filing</li><li>Enterprise controls</li><li>Dedicated support</li></ul><a class="btn g" href="#register">Talk to us</a></div>
 </div>
 <p class="note">Usage-based filing volume is a secondary pricing dimension. Prices are illustrative and not final.</p>
 </div></section>
@@ -426,17 +439,33 @@ var res = await http.PostAsJsonAsync(
 <div class="chips"><span>API-first</span><span>IRIS-ready architecture</span><span>Validation engine</span><span>Event-driven workflow</span><span>Auditability</span></div>
 </div></section>
 
+<section class="soft" id="register"><div class="wrap">
+<p class="eyebrow">Early access</p>
+<h2>We’re in demo. Registrations are welcome.</h2>
+<p class="lead">IrisTaxFiling is a working demo in test mode: filings run against a simulator, not the IRS. Tell us what you want to file and we’ll get in touch.</p>
+<form id="reg" class="regform" novalidate>
+<div class="row2"><label>Name<input name="name" required maxlength="100" autocomplete="name"></label><label>Work email<input name="email" type="email" required maxlength="200" autocomplete="email"></label></div>
+<div class="row2"><label>Company<input name="company" required maxlength="150" autocomplete="organization"></label><label>Your role (optional)<input name="role" maxlength="100" autocomplete="organization-title"></label></div>
+<div class="row2"><label>What do you want to file?<select name="forms"><option value="">Select one</option><option>1099-NEC</option><option>1099-MISC</option><option>1099-INT</option><option>1099-DIV</option><option>1099-B, -K or -R</option><option>Other IRIS forms</option><option>Not sure yet</option></select></label>
+<label>Filings per year<select name="volume"><option value="">Select one</option><option>Under 1,000</option><option>1,000 to 10,000</option><option>10,000 to 100,000</option><option>Over 100,000</option><option>Not sure yet</option></select></label></div>
+<label>Anything else we should know? (optional)<textarea name="message" maxlength="2000"></textarea></label>
+<div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+<button class="btn p" type="submit">Register interest</button>
+<p class="st" id="regmsg" role="status" aria-live="polite"></p>
+<p class="sm">We use this only to contact you about IrisTaxFiling. No account is created and nothing is filed.</p>
+</form>
+</div></section>
 <section class="final"><div class="wrap">
 <h2>Build your product. Let IrisTaxFiling handle the filing infrastructure.</h2>
 <p class="lead">Connect your existing tax data to a developer-first filing workflow.</p>
-<div class="ctas" style="justify-content:center"><a class="btn p" href="https://docs.iristaxfiling.com">Read the docs</a></div>
+<div class="ctas" style="justify-content:center"><a class="btn p" href="#register">Register for early access</a><a class="btn g" href="https://docs.iristaxfiling.com">Read the docs</a></div>
 <a class="mail" href="mailto:hello@iristaxfiling.com">hello@iristaxfiling.com</a>
 </div></section>
 </main>
 
 <footer><div class="wrap"><div class="fr">
-<div><a class="logo" href="#top">iris<b>File</b><i>.tax</i></a><p class="sm">Tax filing infrastructure for modern software.</p></div>
-<nav class="fl" aria-label="Footer"><a href="#product">Product</a><a href="https://docs.iristaxfiling.com">API</a><a href="https://docs.iristaxfiling.com">Docs</a><a href="#pricing">Pricing</a><a href="#security">Security</a><a href="https://status.iristaxfiling.com">Status</a><a href="mailto:hello@iristaxfiling.com">Contact</a><a href="https://iristaxfiling.com/privacy">Privacy</a><a href="https://iristaxfiling.com/terms">Terms</a><a href="https://iristaxfiling.com/dpa">DPA</a></nav>
+<div><a class="logo" href="#top">Iris<b>TaxFiling</b><i>.com</i></a><p class="sm">Tax filing infrastructure for modern software.</p></div>
+<nav class="fl" aria-label="Footer"><a href="#product">Product</a><a href="https://docs.iristaxfiling.com">API</a><a href="https://docs.iristaxfiling.com">Docs</a><a href="#pricing">Pricing</a><a href="#register">Register</a><a href="#security">Security</a><a href="https://status.iristaxfiling.com">Status</a><a href="mailto:hello@iristaxfiling.com">Contact</a><a href="https://iristaxfiling.com/privacy">Privacy</a><a href="https://iristaxfiling.com/terms">Terms</a><a href="https://iristaxfiling.com/dpa">DPA</a></nav>
 </div>
 <p class="disc">IrisTaxFiling is an independent software platform and is not affiliated with or endorsed by the IRS.</p>
 <p class="disc" style="margin-top:8px">© 2026 IrisTaxFiling · IrisTaxFiling.com</p></div></footer>
@@ -465,5 +494,18 @@ btn.addEventListener('click',function(){
   prog.style.width=p+'%'},90)});
 })();
 </script>
-</body>
+<script>
+(function(){
+var f=document.getElementById('reg'),msg=document.getElementById('regmsg');if(!f)return;
+function say(t,c){msg.textContent=t;msg.className='st '+(c||'')}
+f.addEventListener('submit',function(e){
+e.preventDefault();var d={};new FormData(f).forEach(function(v,k){d[k]=String(v).trim()});
+if(!d.name||!d.company||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email||'')){say('Please enter your name, company and a valid email address.','er');return}
+var b=f.querySelector('button');b.disabled=true;say('Sending…');
+fetch('/register',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(d)}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){return{ok:r.ok,j:j}})}).then(function(x){
+if(x.ok){f.reset();say('Thank you. We have your details and will be in touch.','ok')}else{say((x.j&&x.j.error)||'Something went wrong. Please try again in a moment.','er')}
+}).catch(function(){say('Could not reach the server. Please try again.','er')}).then(function(){b.disabled=false});
+});
+})();
+</script></body>
 </html>
