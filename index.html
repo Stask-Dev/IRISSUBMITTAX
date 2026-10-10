@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>IrisTaxFiling — Tax Filing Infrastructure for Software Companies</title>
-<meta name="description" content="IrisTaxFiling provides developer-first infrastructure for preparing, validating, submitting, tracking and correcting U.S. information returns.">
+<meta name="description" content="IrisTaxFiling is a developer-first API for validating, preparing, submitting, tracking and correcting U.S. information returns. 37 IRIS forms, 1099 filing in test mode, FIRE import, signed webhooks. Demo: registrations welcome.">
 <link rel="canonical" href="https://iristaxfiling.com/">
 <meta property="og:title" content="IrisTaxFiling — Tax Filing Infrastructure for Software Companies">
 <meta property="og:description" content="Turn your tax data into IRS-ready information returns without building and maintaining the filing infrastructure yourself.">
@@ -218,8 +218,8 @@ section .wrap>h2,section .wrap>.eyebrow,section .wrap>.lead,#iris .wrap>h3,#deve
  .chain{align-items:center}.chain li+li{margin:20px 0 0}.chain li+li:before{left:50%;top:-20px}
  .nav.open{flex-wrap:wrap}
 }
-.demo{background:color-mix(in srgb,var(--btn) 14%,var(--bg));border-bottom:1px solid var(--line);text-align:center;font-size:14px;padding:9px 16px;color:var(--text)}
-.demo b{color:var(--p)}.demo a{color:var(--p);text-decoration:underline;text-underline-offset:2px;margin-left:4px}
+.demobar{background:color-mix(in srgb,var(--btn) 14%,var(--bg));border-bottom:1px solid var(--line);text-align:center;font-size:14px;padding:9px 16px;color:var(--text)}
+.demobar b{color:var(--p)}.demobar a{color:var(--p);text-decoration:underline;text-underline-offset:2px;margin-left:4px}
 .regform{max-width:760px;margin:40px auto 0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;display:grid;gap:18px;text-align:left}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .regform label{display:grid;gap:6px;font-size:14px;font-weight:500;color:var(--text)}
@@ -231,13 +231,57 @@ section .wrap>h2,section .wrap>.eyebrow,section .wrap>.lead,#iris .wrap>h3,#deve
 .regform button[disabled]{opacity:.6;cursor:progress}
 .regform .st{margin:0;font-size:15px;min-height:22px}.st.ok{color:var(--ok)}.st.er{color:var(--err)}
 @media (max-width:700px){.row2{grid-template-columns:1fr}.regform{padding:22px}}
-@media (max-width:1100px){.navcta .btn.g{display:none}}</style>
+@media (max-width:1100px){.navcta .btn.g{display:none}}.demobar{background:color-mix(in srgb,var(--btn) 14%,var(--bg));border-bottom:1px solid var(--line);text-align:center;font-size:14px;padding:9px 16px;color:var(--text)}
+.demobar b{color:var(--p)}.demobar a{color:var(--p);text-decoration:underline;text-underline-offset:2px;margin-left:4px}
+.tagline{font:600 15px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--p);margin-top:22px;text-align:center}
+.kw{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px auto 0;max-width:900px}
+.kw code{font:500 12.5px ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:5px 12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:14px;background:var(--card);margin-top:40px;overflow:hidden}
+.stats div{padding:22px 24px;border-right:1px solid var(--line)}.stats div:last-child{border:0}
+.stats b{display:block;font-size:34px;letter-spacing:-.03em;line-height:1.1}.stats span{color:var(--muted);font-size:14px}
+.fam{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:20px}
+.famcard{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:22px}
+.famcard h3{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.famcard h3 small{font:500 12px ui-monospace,Menlo,monospace;color:var(--muted)}
+.forms{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.forms span{font:500 12.5px ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid var(--line);background:var(--soft);color:var(--muted);border-radius:6px;padding:4px 9px;cursor:default}
+.forms span.live{border-color:var(--ok);color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--card))}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;font-size:14px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;background:var(--line)}.legend i.live{background:var(--ok)}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.feat2{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.feat2 p{color:var(--muted);font-size:15px;margin:0}
+.feat2 code,.uc code,.card code{font:12.5px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--text)}
+.sb{align-self:flex-start;font:600 11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em;border-radius:999px;padding:3px 10px;border:1px solid var(--line);color:var(--muted)}
+.sb.live{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 50%,var(--line))}
+.sb.wip{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 50%,var(--line))}
+.card .sb{margin-bottom:10px;display:inline-block}
+.uc-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:32px}
+.uc-tabs button{font:500 14px inherit;font-family:inherit;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:9px 16px;min-height:44px;cursor:pointer}
+.uc-tabs button[aria-pressed=true]{color:#fff;background:var(--btn);border-color:var(--btn)}
+.uc{display:none;margin-top:24px;border:1px solid var(--line);background:var(--card);border-radius:18px;padding:32px;grid-template-columns:1.05fr 1fr;gap:36px;text-align:left}
+.uc.on{display:grid}
+.uc h3{font-size:24px;letter-spacing:-.02em;line-height:1.2}
+.uc p{color:var(--muted);margin-top:10px;font-size:15px}
+.uc ol{margin:14px 0 0;padding-left:20px;color:var(--muted);font-size:15px}.uc li{margin:6px 0}
+.uc .forms{margin-top:16px}
+.uc .today{margin-top:18px;font-size:14px;border-left:3px solid var(--p);padding:8px 14px;color:var(--text);background:var(--soft);border-radius:0 8px 8px 0}
+.uc .code{position:relative;align-self:start}
+.uc pre{border-radius:12px;font-size:12.5px;padding:18px;height:auto;border:1px solid var(--line)}
+.panel{position:relative}
+.cpy{position:absolute;top:8px;right:8px;z-index:2;font:500 12px ui-monospace,Menlo,monospace;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:6px;padding:4px 10px;cursor:pointer}
+.cpy:hover{color:var(--text)}
+.dlinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.dlinks a{font:500 13px ui-monospace,Menlo,monospace;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:8px 12px;color:var(--text)}
+.dlinks a:hover{border-color:var(--p);color:var(--p)}
+@media (max-width:900px){.stats{grid-template-columns:1fr 1fr}.stats div{border-bottom:1px solid var(--line)}.fam,.feats{grid-template-columns:1fr}.uc.on{grid-template-columns:1fr;padding:22px}}
+</style>
 </head>
 <body>
-<div class="demo" role="status"><b>Demo preview.</b> IrisTaxFiling runs in test mode against an IRS simulator. Registrations are welcome.<a href="#register">Register for early access</a></div>
+<div class="demobar" role="status"><b>Demo preview.</b> IrisTaxFiling runs in test mode against an IRS simulator. Registrations are welcome.<a href="#register">Register for early access</a></div>
 <header><div class="wrap"><nav class="nav" id="nav" aria-label="Primary">
 <a class="logo" href="#top" aria-label="IrisTaxFiling.com home">Iris<b>TaxFiling</b><i>.com</i></a>
-<div class="links"><a href="#product">Product</a><a href="#iris">IRIS migration</a><a href="#developers">Developers</a><a href="#security">Security</a><a href="#pricing">Pricing</a></div>
+<div class="links"><a href="#product">Product</a><a href="#forms">Forms</a><a href="#use-cases">Use cases</a><a href="#developers">Developers</a><a href="#security">Security</a><a href="#pricing">Pricing</a></div>
 <div class="navcta"><a class="btn g" href="#register">Register</a><a class="btn p" href="https://docs.iristaxfiling.com">API docs</a></div>
 <button class="tgl" id="theme" aria-label="Switch to light mode" aria-pressed="false"><span aria-hidden="true">☀</span></button>
 <button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button>
@@ -245,11 +289,13 @@ section .wrap>h2,section .wrap>.eyebrow,section .wrap>.lead,#iris .wrap>h3,#deve
 
 <main id="top">
 <section class="hero"><div class="wrap">
-<p class="eyebrow">Tax filing infrastructure</p>
+<p class="eyebrow">Information returns, as an API</p>
 <h1>Your tax software shouldn’t have to become tax infrastructure.</h1>
 <p class="lead">IrisTaxFiling helps software companies validate, prepare, submit, track, and correct U.S. information returns through a developer-first API.</p>
 <div class="ctas"><a class="btn p" href="#register">Register for early access</a><a class="btn g" href="https://docs.iristaxfiling.com">Read the API docs</a></div>
 <p class="fine">Built for SaaS platforms, marketplaces, payroll systems, accounting software, and high-volume filers.</p>
+<p class="tagline">One API. 37 IRIS forms. Zero IRS plumbing.</p>
+<div class="kw" aria-label="Developer features"><code>REST + JSON</code><code>OpenAPI 3.1</code><code>Idempotency-Key</code><code>dry-run validate</code><code>HMAC-signed webhooks</code><code>problem+json errors</code><code>CSV templates</code><code>FIRE import</code><code>test mode</code><code>AES-256-GCM at rest</code><code>edge-deployed</code><code>CLI</code></div>
 <div class="pipe" role="img" aria-label="Your software calls the IrisTaxFiling API, which validates, prepares, submits and tracks filings through to the IRS">
 <div class="node">Your software</div><div class="wire"></div><div class="node hi">IrisTaxFiling API</div><div class="wire"></div><div class="node">Validate</div><div class="wire"></div><div class="node">Prepare</div><div class="wire"></div><div class="node">Submit</div><div class="wire"></div><div class="node">Track</div><div class="wire"></div><div class="node">IRS</div>
 </div></div></section>
@@ -276,6 +322,162 @@ section .wrap>h2,section .wrap>.eyebrow,section .wrap>.lead,#iris .wrap>h3,#deve
 <div><span class="ico">03 Submit</span><h3>Reliable filing infrastructure.</h3><p>IRIS-ready preparation and submission orchestration.</p><small>retries · idempotency · acknowledgement tracking</small></div>
 <div><span class="ico">04 Resolve</span><h3>Turn rejection into an actionable workflow.</h3><p>Explain the error, find affected records, correct, revalidate, resubmit.</p><small>correction workflow</small></div>
 </div></div></section>
+
+<section id="forms"><div class="wrap">
+<p class="eyebrow">Forms</p>
+<h2>37 IRIS forms. One API.</h2>
+<p class="lead">The full IRIS catalogue is in the API, with IRS template columns, rules and CSV templates for every form. Four forms are fileable end to end in the demo; the rest have the bulk readiness check today.</p>
+<div class="stats"><div><b>37</b><span>IRIS forms in the catalogue</span></div><div><b>4</b><span>fileable end to end in the demo</span></div><div><b>37</b><span>with CSV template and readiness check</span></div><div><b>2022 to 2025</b><span>tax-year specs from the IRS templates</span></div></div>
+<div class="fam">
+<div class="famcard"><h3>1099 series<small>21 forms</small></h3><div class="forms"><span title="Acquisition or Abandonment of Secured Property">1099-A</span><span title="Proceeds From Broker and Barter Exchange Transactions">1099-B</span><span title="Cancellation of Debt">1099-C</span><span title="Changes in Corporate Control and Capital Structure">1099-CAP</span><span title="Digital Asset Proceeds From Broker Transactions">1099-DA</span><span class="live" title="Dividends and Distributions">1099-DIV</span><span title="Certain Government Payments">1099-G</span><span class="live" title="Interest Income">1099-INT</span><span title="Payment Card and Third Party Network Transactions">1099-K</span><span title="Reportable Life Insurance Sale">1099-LS</span><span title="Long-Term Care and Accelerated Death Benefits">1099-LTC</span><span class="live" title="Miscellaneous Information">1099-MISC</span><span class="live" title="Nonemployee Compensation">1099-NEC</span><span title="Original Issue Discount">1099-OID</span><span title="Taxable Distributions Received From Cooperatives">1099-PATR</span><span title="Payments From Qualified Education Programs">1099-Q</span><span title="Distributions From ABLE Accounts">1099-QA</span><span title="Distributions From Pensions, Annuities, Retirement or Profit-Sharing Plans, IRAs, Insurance Contracts, etc.">1099-R</span><span title="Proceeds From Real Estate Transactions">1099-S</span><span title="Distributions From an HSA, Archer MSA, or Medicare Advantage MSA">1099-SA</span><span title="Seller&#39;s Investment in Life Insurance Contract">1099-SB</span></div></div>
+<div class="famcard"><h3>1098 and 1097 series<small>7 forms</small></h3><div class="forms"><span title="Bond Tax Credit">1097-BTC</span><span title="Mortgage Interest Statement">1098</span><span title="Contributions of Motor Vehicles, Boats, and Airplanes">1098-C</span><span title="Student Loan Interest Statement">1098-E</span><span title="Fines, Penalties, and Other Amounts">1098-F</span><span title="Qualifying Longevity Annuity Contract Information">1098-Q</span><span title="Tuition Statement">1098-T</span></div></div>
+<div class="famcard"><h3>5498 series<small>4 forms</small></h3><div class="forms"><span title="IRA Contribution Information">5498</span><span title="Coverdell ESA Contribution Information">5498-ESA</span><span title="ABLE Account Contribution Information">5498-QA</span><span title="HSA, Archer MSA, or Medicare Advantage MSA Information">5498-SA</span></div></div>
+<div class="famcard"><h3>Other IRIS forms<small>5 forms</small></h3><div class="forms"><span title="Foreign Person&#39;s U.S. Source Income Subject to Withholding">1042-S</span><span title="Exercise of an Incentive Stock Option Under Section 422(b)">3921</span><span title="Transfer of Stock Acquired Through an Employee Stock Purchase Plan Under Section 423(c)">3922</span><span title="Request for Automatic Extension of Time to File Information Returns">8809</span><span title="Certain Gambling Winnings">W-2G</span></div></div>
+</div>
+<div class="legend"><span><i class="live"></i>Live in demo: create, validate, submit, correct</span><span><i></i>Readiness check: template, rules and bulk validation (hover for the form name)</span></div>
+</div></section>
+<section class="soft" id="features"><div class="wrap">
+<p class="eyebrow">What’s in the demo</p>
+<h2>The whole filing lifecycle, as an API.</h2>
+<p class="lead">Everything below runs today in test mode. We mark what is still in progress or on the roadmap, so you know what you can build against.</p>
+<div class="feats">
+<div class="feat2"><span class="sb live">Live in demo</span><h3>Pre-flight validation</h3><p>Field-level errors with a JSON path, a code and a fix. Blockers stop a filing, warnings do not. Add <code>?mode=validate</code> for a dry run that stores nothing.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>TIN checks</h3><p>Format rules for SSN, EIN, ITIN and ATIN plus known-invalid patterns. A full TIN is never echoed back. Format only: IRS TIN matching is not part of the demo.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>Bulk readiness check</h3><p>Send the IRS template CSV or JSON rows for any of the 37 forms and get a grouped report with row numbers and fixes. <code>POST /v1/forms/{id}/validate</code>, nothing stored.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>Filing lifecycle</h3><p>Create, submit, read acknowledgements. An explicit state machine (<code>ready</code>, <code>submitted</code>, <code>accepted</code>, <code>rejected</code>, <code>failed</code>) and a queryable status on every filing.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>Corrections and replacements</h3><p>Fix a rejected filing with <code>POST /v1/filings/{id}/corrections</code>. The new filing links to the original, which is marked <code>corrected</code>.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>FIRE file import</h3><p>Convert an IRS Pub 1220 file into filings. Checks payee counts and control totals, reports what it cannot map instead of guessing, and re-uploading the same file creates no duplicates.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>Idempotency</h3><p>Send an <code>Idempotency-Key</code> and retries return the first response. The same key with a different body is a clear <code>409</code>.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>Signed webhooks</h3><p>Nine events, an HMAC-SHA256 signature with a timestamp, and up to six delivery attempts with backoff. Your product never has to poll.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>Test mode with a simulator</h3><p>Magic TINs and payer names reproduce acceptance, rejection, slow acknowledgements and IRS outages. No IRS, no risk, no real data.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>Audit log and usage</h3><p>Every filing action is recorded and metered per month and mode. <code>GET /v1/audit</code>, <code>GET /v1/usage</code>.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>Encryption and rate limits</h3><p>AES-256-GCM at rest for filing data, generated XML and webhook secrets. Per-account limits with <code>RateLimit-*</code> headers.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>Edge-deployed, runs locally too</h3><p>Cloudflare Workers with Postgres. The same code runs on your laptop with the <code>irisfile</code> CLI: dev, validate, sample, forms, template, check, fire.</p></div>
+<div class="feat2"><span class="sb live">Live in demo</span><h3>OpenAPI and clear errors</h3><p>An OpenAPI 3.1 spec, <code>application/problem+json</code> errors with stable codes, and copy-paste examples in the docs.</p></div>
+<div class="feat2"><span class="sb wip">In progress</span><h3>IRIS A2A transmitter</h3><p>Implements IRS Pub 5718: OAuth2 JWT-bearer, multipart intake, status polling. So far it has only run against our own protocol sandbox, not the IRS.</p></div>
+<div class="feat2"><span class="sb">Roadmap</span><h3>Real IRS filing</h3><p>Needs an IRIS TCC, an API client certificate, the IRS schema package and a pass on the IRS test system. Until then the XML is provisional and live mode is off.</p></div>
+</div>
+</div></section>
+
+<section id="use-cases"><div class="wrap">
+<p class="eyebrow">Use cases</p>
+<h2>Built for software that generates tax data.</h2>
+<p class="lead">Pick your platform. Each scenario shows what you send, what comes back and what works in the demo today.</p>
+<div class="uc-tabs" id="uct" aria-label="Use cases">
+<button type="button" aria-pressed="true" data-uc="0">Contractor and gig platforms</button>
+<button type="button" aria-pressed="false" data-uc="1">Marketplaces</button>
+<button type="button" aria-pressed="false" data-uc="2">Payroll, HR and accounting</button>
+<button type="button" aria-pressed="false" data-uc="3">Banks and fintech</button>
+<button type="button" aria-pressed="false" data-uc="4">Property management</button>
+<button type="button" aria-pressed="false" data-uc="5">Moving off FIRE</button>
+<button type="button" aria-pressed="false" data-uc="6">Benefits and equity</button>
+</div>
+
+<div class="uc on" id="uc0">
+<div><h3>Year-end 1099-NEC for every contractor you paid.</h3>
+<p>You pay thousands of contractors through your platform. In January you need a clean 1099-NEC for each one, and a plan for the ones the IRS bounces.</p>
+<ol><li>Map payouts to <code>recipients[].nonemployee_compensation</code>.</li><li>Dry-run the batch to catch bad TINs and states in December, not January.</li><li>Create and submit with an <code>Idempotency-Key</code> per payer.</li><li>Listen for <code>filing.rejected</code> and send a replacement with one call.</li></ol>
+<div class="forms"><span class="live">1099-NEC</span><span class="live">1099-MISC</span></div>
+<p class="today"><b>In the demo today:</b> the full lifecycle against the IRS simulator, including rejection and correction.</p></div>
+<div class="code panel"><pre><code>POST /v1/filings?mode=validate
+
+{ "form": "1099-NEC", "tax_year": 2026,
+  "payer": { "name": "Acme Platforms Inc", "tin": "12-3456789", ... },
+  "recipients": [{
+    "name": "Jane Contractor",
+    "tin": "123-45-6781",
+    "nonemployee_compensation": 12500.50
+  }] }
+
+&rarr; { "status": "valid", "summary": { "blockers": 0 } }</code></pre></div>
+</div>
+
+<div class="uc" id="uc1">
+<div><h3>Seller and creator payouts, reported at scale.</h3>
+<p>A marketplace pays out to sellers and creators. Some reach payment-network thresholds, others are plain service payments. You need to sort them, check the data and file.</p>
+<ol><li>Download the IRS CSV template for the form you need.</li><li>Run the bulk readiness check on your export and get row-level problems.</li><li>File the 1099-NEC and 1099-MISC population through the API.</li></ol>
+<div class="forms"><span class="live">1099-NEC</span><span class="live">1099-MISC</span><span>1099-K</span></div>
+<p class="today"><b>In the demo today:</b> 1099-NEC and 1099-MISC filing, plus the template and bulk readiness check for 1099-K. Full 1099-K filing is on the roadmap.</p></div>
+<div class="code panel"><pre><code>curl -X POST https://api.iristaxfiling.com/v1/forms/1099-K/validate \
+  -H "Authorization: Bearer $IRISTAXFILING_KEY" \
+  -H "Content-Type: text/csv" \
+  --data-binary @sellers.csv
+
+&rarr; { "object": "readiness", "status": "blocked",
+     "summary": { "records": 25000, "blocked_records": 312 } }</code></pre></div>
+</div>
+
+<div class="uc" id="uc2">
+<div><h3>Information-return filing inside your own product.</h3>
+<p>You run payroll, HR or accounting software. Your customers expect 1099s to just work, and your engineers do not want to learn IRS transmission.</p>
+<ol><li>Create a filing per customer (payer) from the data you already hold.</li><li>Show validation issues in your UI with the field path and the suggested fix.</li><li>Register a webhook and update status without polling.</li><li>Keep the audit trail and usage per account.</li></ol>
+<div class="forms"><span class="live">1099-NEC</span><span class="live">1099-MISC</span><span>W-2G</span><span>1099-G</span></div>
+<p class="today"><b>In the demo today:</b> webhooks with signature verification, audit log and usage metering. W-2G and 1099-G are readiness-check only.</p></div>
+<div class="code panel"><pre><code>POST https://your-app.example/hooks/irisfile
+IrisFile-Signature: t=1791640000,v1=9f2c...
+
+{ "type": "filing.accepted",
+  "livemode": false,
+  "data": { "filing": { "id": "fil_...", "status": "accepted" } } }</code></pre></div>
+</div>
+
+<div class="uc" id="uc3">
+<div><h3>Interest and dividends for every account holder.</h3>
+<p>A bank, credit union or investment app reports interest and dividends. Foreign tax paid, bond CUSIPs and qualified-dividend splits all have to line up.</p>
+<ol><li>Send box amounts in <code>recipients[].amounts</code> and text boxes in <code>details</code>.</li><li>Rules catch a portion larger than its total (for example qualified dividends over ordinary dividends).</li><li>Submit, track and correct like any other filing.</li></ol>
+<div class="forms"><span class="live">1099-INT</span><span class="live">1099-DIV</span><span>1099-OID</span><span>1098</span><span>1099-B</span></div>
+<p class="today"><b>In the demo today:</b> 1099-INT and 1099-DIV filing. 1099-OID, 1098 and 1099-B are readiness-check only.</p></div>
+<div class="code panel"><pre><code>{ "form": "1099-INT", "tax_year": 2026,
+  "recipients": [{
+    "name": "Alex Saver", "tin": "123-45-6781",
+    "amounts": { "interest_income": 842.17,
+                 "federal_tax_withheld": 0,
+                 "foreign_tax_paid": 3.50 },
+    "details": { "foreign_country": "CA" }
+  }] }</code></pre></div>
+</div>
+
+<div class="uc" id="uc4">
+<div><h3>Rents and vendor payments, every year, no spreadsheets.</h3>
+<p>Property managers report rents paid to owners and fees paid to vendors. The data is recurring, so the filing should be too.</p>
+<ol><li>Rents go in 1099-MISC <code>amounts.rents</code>, vendor services in 1099-NEC.</li><li>Validate the batch whenever data changes, then submit once it is clean.</li><li>Replace a filing when a payee changes details.</li></ol>
+<div class="forms"><span class="live">1099-MISC</span><span class="live">1099-NEC</span><span>1099-S</span><span>1098</span></div>
+<p class="today"><b>In the demo today:</b> 1099-MISC and 1099-NEC filing. 1099-S and 1098 are readiness-check only.</p></div>
+<div class="code panel"><pre><code>{ "form": "1099-MISC", "tax_year": 2026,
+  "recipients": [{
+    "name": "Pine Street Holdings", "tin": "98-7654321",
+    "tin_type": "ein",
+    "amounts": { "rents": 18000, "other_income": 250.75 }
+  }] }</code></pre></div>
+</div>
+
+<div class="uc" id="uc5">
+<div><h3>Keep your FIRE files. Move to IRIS.</h3>
+<p>You already produce FIRE flat files. Rather than rebuild the pipeline, point it at the importer and keep going while the IRS moves from FIRE to IRIS.</p>
+<ol><li>Upload the Pub 1220 file. Nothing is stored on a dry run.</li><li>Review the result: payee counts, control totals, what was skipped and why.</li><li>Re-upload with <code>?create=true</code> to create the filings. Sending the same file again creates nothing twice.</li></ol>
+<div class="forms"><span class="live">1099-NEC</span><span class="live">1099-MISC</span><span class="live">1099-INT</span><span class="live">1099-DIV</span></div>
+<p class="today"><b>In the demo today:</b> import for the four forms above. Other forms and G/C corrections are reported as skipped, not guessed.</p></div>
+<div class="code panel"><pre><code>curl -X POST "https://api.iristaxfiling.com/v1/imports/fire?create=true" \
+  -H "Authorization: Bearer $IRISTAXFILING_KEY" \
+  --data-binary @fire.txt
+
+&rarr; { "object": "fire_import", "created": true,
+     "summary": { "issuers": 3, "payees": 3, "imported": 2, "skipped": 1 } }</code></pre></div>
+</div>
+
+<div class="uc" id="uc6">
+<div><h3>Retirement, health and equity forms.</h3>
+<p>Plan administrators, HSA providers and equity platforms deal with forms that are not on the first-wave list: distributions, contributions, stock plans.</p>
+<ol><li>Download the CSV template for the form from the API.</li><li>Run the bulk readiness check on your export.</li><li>Fix the grouped problems with row numbers and re-check.</li></ol>
+<div class="forms"><span>1099-R</span><span>1099-SA</span><span>5498</span><span>5498-SA</span><span>3921</span><span>3922</span><span>1099-Q</span></div>
+<p class="today"><b>In the demo today:</b> catalogue, template and bulk readiness check for all 37 forms. Full filing for these forms is on the roadmap.</p></div>
+<div class="code panel"><pre><code>GET /v1/forms/3922/template      &rarr; text/csv
+POST /v1/forms/3922/validate     &rarr; readiness report
+
+curl https://api.iristaxfiling.com/v1/forms/3922 \
+  -H "Authorization: Bearer $IRISTAXFILING_KEY"</code></pre></div>
+</div>
+</div></section>
 
 <section class="soft" id="demo"><div class="wrap">
 <p class="eyebrow">Filing readiness</p>
@@ -305,19 +507,34 @@ section .wrap>h2,section .wrap>.eyebrow,section .wrap>.lead,#iris .wrap>h3,#deve
 <h2>Bring your data. IrisTaxFiling handles the filing infrastructure.</h2>
 <p class="lead">Your engineers shouldn’t have to become experts in IRS transmission formats, filing workflows, and correction mechanics.</p>
 <div class="demo">
-<div class="panel"><div class="ph"><span>request</span><span>POST /v1/filings</span></div>
-<pre><code><span class="m">POST</span> /v1/filings
-
-{
+<div class="panel"><div class="ph"><span>request</span><span>POST /v1/filings?mode=validate</span></div>
+<pre><code><span class="m">curl</span> -X POST "https://api.iristaxfiling.com/v1/filings?mode=validate" \
+  -H "Authorization: Bearer $IRISTAXFILING_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
   <span class="k">"form"</span>: <span class="s">"1099-NEC"</span>,
   <span class="k">"tax_year"</span>: <span class="n">2026</span>,
   <span class="k">"payer"</span>: { <span class="c">...</span> },
-  <span class="k">"recipients"</span>: [ <span class="c">...</span> ]
-}</code></pre></div>
-<div class="panel"><div class="ph"><span>response</span><span>201 Created</span></div>
+  <span class="k">"recipients"</span>: [{
+    <span class="k">"name"</span>: <span class="s">"Jane Contractor"</span>,
+    <span class="k">"tin"</span>: <span class="s">"000-00-0000"</span>,
+    <span class="k">"address"</span>: { <span class="c">...</span>, <span class="k">"state"</span>: <span class="s">"ZZ"</span> },
+    <span class="k">"nonemployee_compensation"</span>: <span class="n">12500.50</span>
+  }]
+}'</code></pre></div>
+<div class="panel"><div class="ph"><span>response</span><span>200 OK &middot; nothing stored</span></div>
 <pre><code>{
-  <span class="k">"id"</span>: <span class="s">"fil_8f31a"</span>,
-  <span class="k">"status"</span>: <span class="s">"ready"</span>
+  <span class="k">"object"</span>: <span class="s">"validation"</span>,
+  <span class="k">"status"</span>: <span class="s">"blocked"</span>,
+  <span class="k">"summary"</span>: { <span class="k">"blockers"</span>: <span class="n">2</span>, <span class="k">"warnings"</span>: <span class="n">0</span> },
+  <span class="k">"issues"</span>: [
+    { <span class="k">"code"</span>: <span class="s">"tin_invalid"</span>,
+      <span class="k">"path"</span>: <span class="s">"recipients[0].tin"</span>,
+      <span class="k">"fix"</span>: <span class="s">"Verify the TIN with the recipient and correct it."</span> },
+    { <span class="k">"code"</span>: <span class="s">"state_invalid"</span>,
+      <span class="k">"path"</span>: <span class="s">"recipients[0].address.state"</span>,
+      <span class="k">"fix"</span>: <span class="s">"Use a 2-letter US state ... e.g. TX."</span> }
+  ]
 }<span class="cur"></span></code></pre></div>
 </div></div></section>
 
@@ -342,7 +559,7 @@ section .wrap>h2,section .wrap>.eyebrow,section .wrap>.lead,#iris .wrap>h3,#deve
 <p class="eyebrow">Developer experience</p>
 <h2>Five minutes to your first filing workflow.</h2>
 <div class="two">
-<div><ol class="steps5"><li>Create API key</li><li>Send sample filing</li><li>Validate</li><li>Review</li><li>Submit</li></ol>
+<div><ol class="steps5"><li>Register for a test key</li><li>Send sample filing</li><li>Validate</li><li>Review</li><li>Submit</li></ol>
 <div class="ctas" style="justify-content:flex-start"><a class="btn p" href="https://docs.iristaxfiling.com">Read the API documentation</a><a class="btn g" href="#pricing">View pricing</a></div></div>
 <div class="panel"><div class="tabs" role="tablist" aria-label="Code examples"><button role="tab" aria-selected="true" aria-controls="t0" id="b0">cURL</button><button role="tab" aria-selected="false" aria-controls="t1" id="b1" tabindex="-1">Node.js</button><button role="tab" aria-selected="false" aria-controls="t2" id="b2" tabindex="-1">Python</button><button role="tab" aria-selected="false" aria-controls="t3" id="b3" tabindex="-1">.NET</button></div>
 <div id="t0" role="tabpanel" aria-labelledby="b0"><pre tabindex="0"><code>curl https://api.iristaxfiling.com/v1/filings \
@@ -379,6 +596,7 @@ var res = await http.PostAsJsonAsync(
     "https://api.iristaxfiling.com/v1/filings", filing);</code></pre></div>
 </div></div>
 <p class="sm">Examples use plain HTTP. Official SDKs are planned.</p>
+<div class="dlinks"><a href="https://docs.iristaxfiling.com/#create">Create a filing</a><a href="https://docs.iristaxfiling.com/#webhooks">Webhooks</a><a href="https://docs.iristaxfiling.com/#magic">Test values</a><a href="https://docs.iristaxfiling.com/#errors">Errors</a><a href="https://docs.iristaxfiling.com/openapi.json">openapi.json</a></div>
 
 <h3 style="margin-top:72px;font-size:28px;letter-spacing:-.02em">Your system stays in control.</h3>
 <p class="lead" style="margin-top:12px">Webhooks report every state change, so your product never has to poll.</p>
@@ -389,42 +607,35 @@ var res = await http.PostAsJsonAsync(
 <p class="eyebrow">Reliability</p>
 <h2>Built for filing deadlines.</h2>
 <div class="cards">
-<div class="card"><h3>Idempotent submissions</h3><p>Safe to retry without duplicate filings.</p></div>
-<div class="card"><h3>Durable queues</h3><p>Submissions survive restarts and spikes.</p></div>
-<div class="card"><h3>Retry handling</h3><p>Transient failures are retried, not dropped.</p></div>
-<div class="card"><h3>Submission state tracking</h3><p>Every filing has an explicit, queryable state.</p></div>
-<div class="card"><h3>Acknowledgement storage</h3><p>IRS responses are kept with the filing.</p></div>
-<div class="card"><h3>Correction workflows</h3><p>Corrections follow the original filing.</p></div>
-<div class="card"><h3>Audit trails</h3><p>Filing and administrative actions are recorded.</p></div>
-<div class="card"><h3>Operational alerts</h3><p>Know about stuck or rejected filings early.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Idempotent submissions</h3><p>Safe to retry without duplicate filings, for API calls and for re-uploaded FIRE files.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Retry handling</h3><p>Webhook deliveries are retried with backoff. A failed transmission is marked <code>failed</code> and can be submitted again.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Submission state tracking</h3><p>Every filing has an explicit, queryable state and a one-minute background check for acknowledgements.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Acknowledgement storage</h3><p>IRS responses are kept with the filing, with the field path of each error.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Correction workflows</h3><p>Corrections and replacements link back to the original filing.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Operational alerts</h3><p>Failed acknowledgement checks and abandoned webhooks raise an alert, with Slack or Teams delivery.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Audit trails</h3><p>Filing actions are recorded per account and readable through the API.</p></div>
+<div class="card"><span class="sb">Roadmap</span><h3>Durable queues</h3><p>Submissions run on a scheduler today. Queue-based workers are planned for spikes and long outages.</p></div>
 </div></div></section>
 
 <section class="soft" id="security"><div class="wrap">
 <p class="eyebrow">Security</p>
 <h2>Security designed for sensitive tax data.</h2>
 <div class="cards">
-<div class="card"><h3>Encryption</h3><p>In transit and at rest.</p></div>
-<div class="card"><h3>Role-based access</h3><p>Least-privilege access to data and systems.</p></div>
-<div class="card"><h3>Audit logging</h3><p>Track filing and administrative actions.</p></div>
-<div class="card"><h3>Production/test separation</h3><p>Separate sandbox and production environments.</p></div>
-<div class="card"><h3>Key management</h3><p>Credentials are not embedded in application code.</p></div>
-<div class="card"><h3>Data retention controls</h3><p>Control how long filing data is kept.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Encryption</h3><p>TLS in transit. AES-256-GCM at rest for filing data, generated XML and webhook secrets.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>TIN handling</h3><p>TINs are masked in API responses and never echoed back in full.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Test and live separation</h3><p>Separate keys and separate data for test and live mode. Live submission is off until IRS access is in place.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Audit logging and rate limits</h3><p>Filing actions are logged. Per-account request limits protect the API.</p></div>
+<div class="card"><span class="sb live">Live in demo</span><h3>Signed webhooks</h3><p>Every delivery carries a timestamped HMAC signature you can verify.</p></div>
+<div class="card"><span class="sb">Roadmap</span><h3>Role-based access</h3><p>Least-privilege roles for people and keys. Keys are account-wide today.</p></div>
+<div class="card"><span class="sb">Roadmap</span><h3>Key management</h3><p>A managed key service and rotation. Today one data key encrypts at rest.</p></div>
+<div class="card"><span class="sb">Roadmap</span><h3>Data retention controls</h3><p>Configurable retention and purge for filing data.</p></div>
 </div>
-<p class="note">Compliance requirements vary by data source, customer role, and filing workflow. IrisTaxFiling does not provide legal or tax advice.</p>
+<p class="note">This is a demo deployment: do not send real taxpayer data. Compliance requirements vary by data source, customer role, and filing workflow. IrisTaxFiling does not provide legal or tax advice.</p>
 </div></section>
 
-<section><div class="wrap">
-<h2>Built for software that generates tax data.</h2>
-<div class="cats">
-<div><span class="ico">$</span><span><b>Payroll platforms</b><br><span class="sm">Add information-return filing without building IRS infrastructure.</span></span></div>
-<div><span class="ico">⇄</span><span><b>Marketplaces</b><br><span class="sm">Handle high-volume recipient reporting.</span></span></div>
-<div><span class="ico">≡</span><span><b>Accounting platforms</b><br><span class="sm">Embed filing directly into your workflow.</span></span></div>
-<div><span class="ico">◇</span><span><b>Contractor platforms</b><br><span class="sm">Turn payment data into filing-ready returns.</span></span></div>
-<div><span class="ico">⌂</span><span><b>Property management</b><br><span class="sm">Automate recurring information-return workflows.</span></span></div>
-<div><span class="ico">¤</span><span><b>ERP / Finance SaaS</b><br><span class="sm">Keep tax filing inside your existing product.</span></span></div>
-</div></div></section>
 
-<section class="soft" id="pricing"><div class="wrap">
+
+<section id="pricing"><div class="wrap">
 <p class="eyebrow">Pricing</p>
 <h2>API pricing that scales with filing volume.</h2>
 <div class="plans">
@@ -496,6 +707,16 @@ btn.addEventListener('click',function(){
 })();
 </script>
 <script>
+(function(){
+var tb=document.getElementById('uct');
+if(tb){var bs=[].slice.call(tb.querySelectorAll('button'));bs.forEach(function(b){b.addEventListener('click',function(){var i=b.getAttribute('data-uc');bs.forEach(function(x){x.setAttribute('aria-pressed',x===b)});[].forEach.call(document.querySelectorAll('.uc'),function(p){p.classList.toggle('on',p.id==='uc'+i)})})})}
+[].forEach.call(document.querySelectorAll('.panel pre'),function(pre){
+ var host=pre.parentNode;if(!host||host.querySelector('.cpy'))return;
+ var b=document.createElement('button');b.type='button';b.className='cpy';b.textContent='Copy';b.setAttribute('aria-label','Copy code');
+ b.addEventListener('click',function(){var tx=pre.innerText;(navigator.clipboard?navigator.clipboard.writeText(tx):Promise.reject()).then(function(){b.textContent='Copied'},function(){b.textContent='Press Ctrl+C'});setTimeout(function(){b.textContent='Copy'},1600)});
+ host.insertBefore(b,pre)});
+})();
+</script><script>
 (function(){
 var f=document.getElementById('reg'),msg=document.getElementById('regmsg');if(!f)return;
 function say(t,c){msg.textContent=t;msg.className='st '+(c||'')}
