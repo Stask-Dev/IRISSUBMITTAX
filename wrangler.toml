@@ -1,0 +1,14 @@
+# IrisTaxFiling landing page on Cloudflare (static assets, no script). Deploy: npx wrangler deploy
+name = "iristaxfiling-site"
+compatibility_date = "2025-09-01"
+
+[assets]
+directory = "."
+
+[[routes]]
+pattern = "iristaxfiling.com"
+custom_domain = true
+
+[[routes]]
+pattern = "www.iristaxfiling.com"
+custom_domain = true
